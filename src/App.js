@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
 import Todo from './Todo'
+import './App.css';
+import NewTodo from './NewTodo';
+
 // import NewTodo from './NewTodo'
 
 class App extends Component {
@@ -12,22 +14,37 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("ComponentDidMount ran");
+    console.log("ComponentDidMount() ran");
     //   // Make API call to fetch existing Todos.
     //   fetch('http://example.com/todos')
     //   .then(function (response) {
     //     this.setState({todos: JSON.parse(response)});
     //   }
-    // })
+    // );
+    this.setState({
+      todos: [
+        {
+          text: "hey, this is dynamic",
+          id: 123456
+        },
+        {
+          text: "this one too",
+          id: 789123
+        }
+      ]
+    })
   }
   render() {
     return (
       <div className="App">
         <h1>Lien's ToDo App</h1>
+        <NewTodo/>
         <section id="myTodos">
-          <Todo text="brush teeth" id="abc123" key="abc123" />
-          <Todo text="eat" id="abc456" />
-          <Todo text="sleep" id="anotherID" />
+          <hr></hr>
+          {this.state.todos.map((item) =>
+          <Todo text={item.text} id={item.id} key={item.id}/>
+          )}
+          <hr></hr>
         </section>
       </div>
     );
