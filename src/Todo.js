@@ -69,6 +69,8 @@ class Todo extends Component {
     let completedClass = false;
     if (this.state.completed === true) {
       completedClass = "completed";
+    } else {
+      completedClass = "not-completed";
     }
 
     return (
