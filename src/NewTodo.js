@@ -5,7 +5,7 @@ class NewTodo extends Component {
   render() {
     return (
       <div id="{data-todo.id}" className="Todo">
-        <h2>NewToDo Component</h2>
+        <h2>Add A Todo Item Form</h2>
         <input type="text"></input>
       </div>
     );
