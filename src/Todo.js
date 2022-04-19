@@ -68,16 +68,16 @@ class Todo extends Component {
   render() {
     let completedClass = false;
     if (this.state.completed === true) {
-      completedClass = "completed";
+      completedClass = "completed-class";
     } else {
-      completedClass = "not-completed";
+      completedClass = "not-completed-class";
     }
 
     return (
       <div data-todo-id={this.state.id} className="todo">
-        <h2>{this.state.text}</h2>
+        <h2 className={completedClass}>{this.state.text}</h2>
         <input type="checkbox"></input>
-        <input className={completedClass} onClick={this.handleDeleteClick} type="button" value="delete"></input>
+        <input onClick={this.handleDeleteClick} type="button" value="delete"></input>
       </div>
     );
   }
