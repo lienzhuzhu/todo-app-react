@@ -2,3 +2,26 @@ div {
     font-family: "Courier";
     text-align: center;
 }
+
+#add-input {
+    border-radius: 10px;
+}
+
+#add-input:focus {
+    border-color: salmon;
+    background-color: whitesmoke;
+    outline: none;
+}
+
+#add-button {
+    background-color: salmon;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: white;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 5px;
+    font-family: "Courier";
+}
+
