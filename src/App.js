@@ -4,7 +4,6 @@ import './App.css';
 import NewTodo from './NewTodo';
 
 
-const apiKey = "96364a-276feb-952475-c85e9e-d6e333";
 
 
 class App extends Component {
@@ -12,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: []
+      todos: []         // array containg all todos in server
     }
   }
 
@@ -32,6 +31,8 @@ class App extends Component {
 
     this.setState({
       todos: [
+        // right now these are hard coded todo items
+        // make call to api to get actual items
         {
           text: "first item",
           id: 123456,
@@ -57,10 +58,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Lien's ToDo App</h1>
-        <NewTodo/>
-        <section id="myTodos">
-          <hr></hr>
 
+        <NewTodo/>  
+
+        <section id="myTodos">
           {this.state.todos.map((item) =>
             <Todo 
               text={item.text} 
@@ -70,8 +71,6 @@ class App extends Component {
               refreshTodosFromApi={this.refreshTodosFromApi}
             />
           )}
-
-          <hr></hr>
         </section>
       </div>
     );
