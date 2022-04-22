@@ -3,6 +3,10 @@ div {
     text-align: center;
 }
 
+.todo-item-wrapper {
+    padding: 20px;
+}
+
 .completed-class {
     text-decoration: line-through;
 }
@@ -21,4 +25,14 @@ div {
     border-radius: 5px;
     border-color: white;
     font-family: "Courier";
+}
+
+.complete-checkbox-class {
+    display: inline;
+}
+
+h2 {
+    display: inline;
+    padding-left: 20px;
+    padding-right: 20px;
 }

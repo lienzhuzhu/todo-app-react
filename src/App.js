@@ -31,7 +31,6 @@ class App extends Component {
   // add item
   //
   createNewTodo() {
-
     let data = {
       text: this.state.inputText
     }
@@ -54,8 +53,6 @@ class App extends Component {
 
 
 
-
-
   // loads items from server into todos array
   //
   componentDidMount() {
@@ -65,7 +62,7 @@ class App extends Component {
   // helper method to load items from server
   //
   refreshTodosFromApi() {
-    console.log("ComponentDidMount() ran");
+    console.log("refreshTodosFromAPI() ran");
     let self = this;
 
     let loadRequest = new XMLHttpRequest();
@@ -73,9 +70,8 @@ class App extends Component {
     loadRequest.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
           self.setState({
-            todos: [JSON.parse(this.responseText)]
+            todos: [JSON.parse(this.responseText)]          // updates this.state.todos with all todos in server
           });
-          
         }
     };
 
@@ -93,7 +89,7 @@ class App extends Component {
   render() {
     return (
       <div className="content-wrapper">
-        <h1>Lien's ToDo App</h1>
+        <h1>Todo List Application</h1>
 
         <NewTodo handleTextChange={this.handleTextChange} createNewTodo={this.createNewTodo} />  
 
@@ -101,7 +97,7 @@ class App extends Component {
 
           {this.state.todos.map((item) =>
             <Todo 
-              key={item.text}
+              key={item.id}
               // key="unique"
               text={item.text} 
               id={item.id}

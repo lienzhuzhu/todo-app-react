@@ -35,8 +35,6 @@ class NewTodo extends Component {
   render() {
     return (
       <div id="form-id" className="form-wrapper">
-        <h2>Add A Todo Item Form</h2>
-
         <form onSubmit={this.createNewTodo} className="add-form" id="add-item-form">
           <input value={this.state.inputText} onChange={this.handleTextChange} type="text" name="add-todo-input" id="add-input"/>
           <button type="submit" id="add-button">Add</button>

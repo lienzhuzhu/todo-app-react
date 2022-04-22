@@ -64,8 +64,8 @@ class Todo extends Component {
 
     return (
       <div data-todo-id={this.state.id} className="todo-item-wrapper">
+        <input onClick={this.handleCompleteClick} type="checkbox" className="complete-checkbox-class"></input>
         <h2 className={completedClass}>{this.state.text}</h2>
-        <input onClick={this.handleCompleteClick} type="checkbox"></input>
         <input onClick={this.handleDeleteClick} type="button" value="delete" className="delete-button-class"></input>
       </div>
     );
