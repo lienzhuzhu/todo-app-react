@@ -18,7 +18,6 @@ class NewTodo extends Component {
   // handle text input 
   //
   handleTextChange(event) {
-    console.log("hi high");
     this.setState({inputText: event.target.value});
     this.props.handleTextChange(event.target.value);
   }

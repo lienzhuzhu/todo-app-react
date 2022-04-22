@@ -32,10 +32,6 @@ class App extends Component {
   // add item
   //
   createNewTodo() {
-    console.log("form submitted in app");
-    // ajax call here
-    // use this.state.inputText from handleTextChange();
-    //
 
     let data = {
       text: this.state.inputText
