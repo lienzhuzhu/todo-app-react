@@ -13,7 +13,6 @@ class Todo extends Component {
       text: props.text,
       id: props.id,
       completed: props.completed,
-      key: props.key,
     }
 
     // This binding is necessary to make `this` work in the callback
@@ -45,7 +44,7 @@ class Todo extends Component {
       }
     }
 
-    deleteRequest.open("DELETE", "https://cse204.work/todos/"+this.state.id, true);
+    deleteRequest.open("DELETE", "https://cse204.work/todos/"+self.state.id, true);
     deleteRequest.setRequestHeader("Content-type", "application/json");
     deleteRequest.setRequestHeader("x-api-key", apiKey);
     deleteRequest.send();
@@ -63,7 +62,7 @@ class Todo extends Component {
     }
 
     return (
-      <div data-todo-id={this.state.id} className="todo-item-wrapper" id={this.state.id} key={this.state.id}>
+      <div data-todo-id={this.state.id} className="todo-item-wrapper">
         <h2 className={completedClass}>{this.state.text}</h2>
         <input onClick={this.handleCompleteClick} type="checkbox"></input>
         <input onClick={this.handleDeleteClick} type="button" value="delete" className="delete-button-class"></input>
