@@ -98,11 +98,11 @@ class App extends Component {
           {this.state.todos.map((item) =>
             <Todo 
               key={item.id}
-              // key="unique"
+              // key="not unique"
               text={item.text} 
               id={item.id}
               completed={item.completed} 
-              // refreshTodosFromApi={this.refreshTodosFromApi}
+              refreshTodosFromApi={this.refreshTodosFromApi}
             />
           )}
 
