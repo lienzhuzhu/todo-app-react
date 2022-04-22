@@ -12,7 +12,8 @@ class Todo extends Component {
     this.state = {
       text: props.text,
       id: props.id,
-      completed: props.completed
+      completed: props.completed,
+      key: props.key,
     }
 
     // This binding is necessary to make `this` work in the callback
@@ -39,9 +40,8 @@ class Todo extends Component {
     deleteRequest.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         self.setState({
-          // refresh the array of todos
-          //
-        })
+          todos: [JSON.parse(this.responseText)] 
+        });
       }
     }
 
@@ -63,10 +63,10 @@ class Todo extends Component {
     }
 
     return (
-      <div data-todo-id={this.state.id} className="todo-item-wrapper">
+      <div data-todo-id={this.state.id} className="todo-item-wrapper" id={this.state.id} key={this.state.id}>
         <h2 className={completedClass}>{this.state.text}</h2>
         <input onClick={this.handleCompleteClick} type="checkbox"></input>
-        <input onClick={this.handleDeleteClick} type="button" value="delete"></input>
+        <input onClick={this.handleDeleteClick} type="button" value="delete" className="delete-button-class"></input>
       </div>
     );
   }

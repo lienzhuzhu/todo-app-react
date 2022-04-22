@@ -4,7 +4,25 @@ import './NewTodo.css';
 const apiKey = "96364a-276feb-952475-c85e9e-d6e333";
 
 class NewTodo extends Component {
-  
+
+  constructor(props) {
+    super(props);
+
+    this.handleTextChange = this.handleTextChange.bind(this);
+
+    this.state = {
+      inputText: ""
+    }
+  }
+
+  handleTextChange(event) {
+    console.log("text change newtodo");
+    this.setState({inputText: event.target.value});
+    this.props.handleTextChange(event.target.value);
+  }
+
+  // submit handler
+  //
   handleAddClick() {
     // Setting variable for form input (get from HTML form)
     let itemText = document.getElementById("add-input").value;
@@ -34,12 +52,13 @@ class NewTodo extends Component {
 
   render() {
     return (
-      <div id="{data-todo.id}" className="form-wrapper">
+      <div id="form-id" className="form-wrapper">
         <h2>Add A Todo Item Form</h2>
 
         <form className="add-form" id="add-item-form">
-          <input type="text" name="add-todo-input" id="add-input"/>
-          <input type="submit" name="add-todo-btn" id="add-button" value="Add"/>
+          <input value={this.state.inputText} onChange={this.handleTextChange} type="text" name="add-todo-input" id="add-input"/>
+          {/* <input type="submit" name="add-todo-btn" id="add-button" value="Add"/> */}
+          <button onClick={this.createNewTodo} id="add-button" value="Add">Add</button>
         </form>
       </div>
     );
