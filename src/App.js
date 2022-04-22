@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Todo from './Todo'
+import Todo from './Todo'
 import NewTodo from './NewTodo';
 import './App.css';
 
@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      todos: [],                                                // array containg all todos in server
+      todos: [],                                                // array with all todos in server
       inputText: "",                                            // value from input form
     }
 
@@ -26,7 +26,6 @@ class App extends Component {
   //
   handleTextChange(inputTextFromChildComponent) {
     this.setState({inputText: inputTextFromChildComponent});
-    console.log(inputTextFromChildComponent);
   }
 
   // add item
@@ -51,76 +50,75 @@ class App extends Component {
     createRequest.setRequestHeader("Content-type", "application/json");
     createRequest.setRequestHeader("x-api-key", apiKey);
     createRequest.send(JSON.stringify(data));
-
-    // self.setState({inputText: ""});
   }
 
 
-  // // loads items from server into todos array
-  // //
-  // componentDidMount() {
-  //   this.refreshTodosFromApi();
-  // }
+
+
+
+  // loads items from server into todos array
+  //
+  componentDidMount() {
+    this.refreshTodosFromApi();
+  }
   
-  // // helper method to load items from server
-  // //
-  // refreshTodosFromApi() {
-  //   console.log("ComponentDidMount() ran");
+  // helper method to load items from server
+  //
+  refreshTodosFromApi() {
+    console.log("ComponentDidMount() ran");
     
-  //   // var self = this;
+    let self = this;
 
-  //   // var loadRequest = new XMLHttpRequest();
+    let loadRequest = new XMLHttpRequest();
 
-  //   // loadRequest.onreadystatechange = function() {
-  //   //     if (this.readyState === 4 && this.status === 200) {
-  //   //       self.setState({
-  //   //         todos: [JSON.parse(this.responseText)] 
-  //   //       });
-  //   //     }
-  //   // };
+    loadRequest.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          self.setState({
+            todos: [JSON.parse(this.responseText)]
+          });
+          console.log(self.state.todos); 
+        }
+    };
 
-  //   // loadRequest.open("GET", "https://cse204.work/todos", true);
-  //   // loadRequest.setRequestHeader("x-api-key", apiKey);
-  //   // loadRequest.send();
+    loadRequest.open("GET", "https://cse204.work/todos", true);
+    loadRequest.setRequestHeader("x-api-key", apiKey);
+    loadRequest.send();
+  }
 
-  //   this.setState({
-  //     todos: [
-  //       { text: "first item", id: "123456", completed: true, key: "123456" },
-  //       { text: "second item", id: "789123", completed: false, key: "789123" }
-  //     ]
-  //   })
 
-  // }
+
 
 
   render() {
     return (
-      <div className="App">
+      <div className="content-wrapper">
         <h1>Lien's ToDo App</h1>
 
-        <NewTodo 
-          handleTextChange={this.handleTextChange}
-          createNewTodo={this.createNewTodo}
-        />  
+        <NewTodo handleTextChange={this.handleTextChange} createNewTodo={this.createNewTodo} />  
 
         <section id="myTodos">
 
-
-          {/* {this.state.todos.map((item) =>
+          {this.state.todos.map((item) =>
             <Todo 
+              // key={item.id}
+              key="unique"
               text={item.text} 
               id={item.id}
               completed={item.completed} 
-              key={item.id}
-              refreshTodosFromApi={this.refreshTodosFromApi}
+              // refreshTodosFromApi={this.refreshTodosFromApi}
             />
-          )} */}
+          )}
 
           
         </section>
       </div>
     );
   }
+
+
+
+
+
 
 }
 

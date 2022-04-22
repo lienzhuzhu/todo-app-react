@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Todo.css';
 
 
-const apiKey = "96364a-276feb-952475-c85e9e-d6e333";
+// const apiKey = "96364a-276feb-952475-c85e9e-d6e333";
 
 class Todo extends Component {
 
@@ -32,23 +32,24 @@ class Todo extends Component {
   //
   handleDeleteClick() {
     console.log("Delete here.");
-    console.log(this);
+    // console.log(this);
 
-    var self = this;
-    var deleteRequest = new XMLHttpRequest();
-    deleteRequest.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        self.setState({
-          todos: [JSON.parse(this.responseText)] 
-        });
-      }
-    }
+    // var self = this;
+    // var deleteRequest = new XMLHttpRequest();
+    // deleteRequest.onreadystatechange = function () {
+    //   if (this.readyState === 4 && this.status === 200) {
+    //     self.setState({
+    //       todos: [JSON.parse(this.responseText)] 
+    //     });
+    //   }
+    // }
 
-    deleteRequest.open("DELETE", "https://cse204.work/todos/"+self.state.id, true);
-    deleteRequest.setRequestHeader("Content-type", "application/json");
-    deleteRequest.setRequestHeader("x-api-key", apiKey);
-    deleteRequest.send();
+    // deleteRequest.open("DELETE", "https://cse204.work/todos/"+self.state.id, true);
+    // deleteRequest.setRequestHeader("Content-type", "application/json");
+    // deleteRequest.setRequestHeader("x-api-key", apiKey);
+    // deleteRequest.send();
   }
+
 
 
 
