@@ -66,7 +66,6 @@ class App extends Component {
   //
   refreshTodosFromApi() {
     console.log("ComponentDidMount() ran");
-    
     let self = this;
 
     let loadRequest = new XMLHttpRequest();
@@ -76,13 +75,15 @@ class App extends Component {
           self.setState({
             todos: [JSON.parse(this.responseText)]
           });
-          console.log(self.state.todos); 
+          
         }
     };
 
     loadRequest.open("GET", "https://cse204.work/todos", true);
     loadRequest.setRequestHeader("x-api-key", apiKey);
     loadRequest.send();
+
+    console.log(self.state.todos);
   }
 
 
@@ -100,8 +101,8 @@ class App extends Component {
 
           {this.state.todos.map((item) =>
             <Todo 
-              // key={item.id}
-              key="unique"
+              key={item.text}
+              // key="unique"
               text={item.text} 
               id={item.id}
               completed={item.completed} 
