@@ -4,7 +4,6 @@ import './Todo.css';
 
 const apiKey = "96364a-276feb-952475-c85e9e-d6e333";
 
-
 class Todo extends Component {
 
   constructor(props) {
@@ -16,10 +15,8 @@ class Todo extends Component {
       completed: props.completed,
     }
 
-    // This binding is necessary to make `this` work in the callback
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleCompleteClick = this.handleCompleteClick.bind(this);
-    // this.refreshTodosFromApi = this.refreshTodosFromApi.bind(this);
   }
 
 
@@ -41,8 +38,6 @@ class Todo extends Component {
           "completed": false
       }
     }
-
-    // event.target.checked
     
     let self = this;
     let completeRequest = new XMLHttpRequest();
@@ -56,23 +51,32 @@ class Todo extends Component {
     completeRequest.setRequestHeader("Content-type", "application/json");
     completeRequest.setRequestHeader("x-api-key", apiKey);
     completeRequest.send(JSON.stringify(data));
+
   }
 
-
-  // checkItem = (e) => {
 
   // delete button click event handler
   //
   handleDeleteClick() {
-    console.log("Delete here.");
+    let self = this;
+    let deleteRequest = new XMLHttpRequest();
+    
+    deleteRequest.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log("successful delete call");
+        self.props.refreshTodosFromApi();
+      } 
+    }
 
+    deleteRequest.open("DELETE", "https://cse204.work/todos/"+self.state.id, true);
+    deleteRequest.setRequestHeader("Content-type", "application/json");
+    deleteRequest.setRequestHeader("x-api-key", apiKey);
+    deleteRequest.send();
   }
 
-
   render() {
-
     let completedClass = "";
-    if (this.state.completed === true) {
+    if (this.props.completed === true) {      // this.state.completed === blah doesn't work
       completedClass = "completed-class";
     } else {
       completedClass = "not-completed-class";
@@ -80,8 +84,7 @@ class Todo extends Component {
 
     return (
       <div data-todo-id={this.state.id} className="todo-item-wrapper">
-        {/* <input onClick={this.handleCompleteClick} id={this.state.id} type="checkbox" className="complete-checkbox-class"></input> */}
-        <input onChange={this.handleCompleteClick} id={this.state.id} type="checkbox" className="complete-checkbox-class"></input>
+        <input onChange={this.handleCompleteClick} id={this.state.id} type="checkbox" className="complete-checkbox-class" defaultChecked={this.props.completed} ></input>
         <p className={completedClass}>{this.state.text}</p>
         <input onClick={this.handleDeleteClick} type="button" value="delete" className="delete-button-class"></input>
       </div>

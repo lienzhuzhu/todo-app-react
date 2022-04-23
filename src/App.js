@@ -51,7 +51,6 @@ class App extends Component {
   }
 
 
-
   // loads items from server into todos array
   //
   componentDidMount() {
@@ -78,8 +77,6 @@ class App extends Component {
     loadRequest.setRequestHeader("x-api-key", apiKey);
     loadRequest.send();
   }
-
-
   
 
   render() {
@@ -99,15 +96,11 @@ class App extends Component {
               refreshTodosFromApi={this.refreshTodosFromApi}
             />
           )}
-
-          <Todo key="unique" text="hard coded not in server" id={123456} completed={false}/>
-
         </div>
       </div>
     );
   }
 
-  
 }
 
 export default App;
