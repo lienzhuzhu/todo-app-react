@@ -8,8 +8,6 @@ const apiKey = "96364a-276feb-952475-c85e9e-d6e333";
 
 class App extends Component {
   
-  // App class constructor
-  //
   constructor(props) {
     super(props);
 
@@ -20,6 +18,7 @@ class App extends Component {
 
     this.handleTextChange = this.handleTextChange.bind(this);
     this.createNewTodo = this.createNewTodo.bind(this);
+    this.refreshTodosFromApi = this.refreshTodosFromApi.bind(this);
   }
 
   // detect change in text input
@@ -62,61 +61,54 @@ class App extends Component {
   // helper method to load items from server
   //
   refreshTodosFromApi() {
-    console.log("refreshTodosFromAPI() ran");
     let self = this;
-
     let loadRequest = new XMLHttpRequest();
 
     loadRequest.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
           self.setState({
-            todos: [JSON.parse(this.responseText)]          // updates this.state.todos with all todos in server
+            todos: JSON.parse(this.responseText)       
           });
+
+        console.log(self.state.todos);
         }
     };
 
     loadRequest.open("GET", "https://cse204.work/todos", true);
     loadRequest.setRequestHeader("x-api-key", apiKey);
     loadRequest.send();
-
-    console.log(self.state.todos);
   }
 
 
+  
 
 
 
   render() {
     return (
       <div className="content-wrapper">
-        <h1>Todo List Application</h1>
+        <h1>Your To-do List</h1>
 
         <NewTodo handleTextChange={this.handleTextChange} createNewTodo={this.createNewTodo} />  
 
-        <section id="myTodos">
-
+        <div id="item-list-wrapper">
           {this.state.todos.map((item) =>
             <Todo 
               key={item.id}
-              // key="not unique"
               text={item.text} 
               id={item.id}
               completed={item.completed} 
               refreshTodosFromApi={this.refreshTodosFromApi}
             />
           )}
+          <Todo key="unique" text="test" id={123456} completed={true}/>
 
-          
-        </section>
+        </div>
       </div>
     );
   }
 
-
-
-
-
-
+  
 }
 
 export default App;
