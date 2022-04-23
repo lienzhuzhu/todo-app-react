@@ -23,9 +23,6 @@ class Todo extends Component {
   // checkbox click event handler
   //
   handleCompleteClick() {
-    console.log("Complete here.");
-    console.log(this.state.id);
-
     let checkButton = document.getElementById(this.state.id);
 
     let data;
@@ -43,7 +40,6 @@ class Todo extends Component {
     let completeRequest = new XMLHttpRequest();
     completeRequest.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
-        console.log("successful call");
         self.props.refreshTodosFromApi();
       }
     }
@@ -51,7 +47,6 @@ class Todo extends Component {
     completeRequest.setRequestHeader("Content-type", "application/json");
     completeRequest.setRequestHeader("x-api-key", apiKey);
     completeRequest.send(JSON.stringify(data));
-
   }
 
 
@@ -63,7 +58,6 @@ class Todo extends Component {
     
     deleteRequest.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
-        console.log("successful delete call");
         self.props.refreshTodosFromApi();
       } 
     }

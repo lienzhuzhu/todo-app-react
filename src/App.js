@@ -68,8 +68,6 @@ class App extends Component {
           self.setState({
             todos: JSON.parse(this.responseText)       
           });
-
-        console.log(self.state.todos);
         }
     };
 
