@@ -101,7 +101,8 @@ class App extends Component {
               refreshTodosFromApi={this.refreshTodosFromApi}
             />
           )}
-          <Todo key="unique" text="test" id={123456} completed={true}/>
+          
+          <Todo key="unique" text="hard coded not in server" id={123456} completed={false}/>
 
         </div>
       </div>
