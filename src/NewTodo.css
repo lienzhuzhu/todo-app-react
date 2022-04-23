@@ -3,6 +3,11 @@ div {
     text-align: center;
 }
 
+.add-form {
+    width: 50%;
+    margin: auto;
+}
+
 #add-input {
     border-radius: 10px;
 }
@@ -28,4 +33,5 @@ div {
 .form-wrapper {
     margin-top: 30px;
     margin-bottom: 60px;
+    text-align: center;
 }
