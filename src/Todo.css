@@ -7,6 +7,8 @@ div {
     padding: 20px;
 }
 
+
+/* text strikethrough or not based on completed */
 .completed-class {
     text-decoration: line-through;
 }

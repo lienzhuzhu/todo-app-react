@@ -4,6 +4,7 @@ import './Todo.css';
 
 const apiKey = "96364a-276feb-952475-c85e9e-d6e333";
 
+
 class Todo extends Component {
 
   constructor(props) {
@@ -40,23 +41,25 @@ class Todo extends Component {
           "completed": false
       }
     }
+
+    // event.target.checked
     
     let self = this;
     let completeRequest = new XMLHttpRequest();
     completeRequest.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
         console.log("successful call");
-
+        self.props.refreshTodosFromApi();
       }
     }
     completeRequest.open("PUT", "https://cse204.work/todos/"+self.state.id, true);
     completeRequest.setRequestHeader("Content-type", "application/json");
     completeRequest.setRequestHeader("x-api-key", apiKey);
     completeRequest.send(JSON.stringify(data));
-    
-    self.props.refreshTodosFromApi();
   }
 
+
+  // checkItem = (e) => {
 
   // delete button click event handler
   //
@@ -64,8 +67,6 @@ class Todo extends Component {
     console.log("Delete here.");
 
   }
-
-
 
 
   render() {
@@ -79,7 +80,8 @@ class Todo extends Component {
 
     return (
       <div data-todo-id={this.state.id} className="todo-item-wrapper">
-        <input onClick={this.handleCompleteClick} id={this.state.id} type="checkbox" className="complete-checkbox-class"></input>
+        {/* <input onClick={this.handleCompleteClick} id={this.state.id} type="checkbox" className="complete-checkbox-class"></input> */}
+        <input onChange={this.handleCompleteClick} id={this.state.id} type="checkbox" className="complete-checkbox-class"></input>
         <p className={completedClass}>{this.state.text}</p>
         <input onClick={this.handleDeleteClick} type="button" value="delete" className="delete-button-class"></input>
       </div>
